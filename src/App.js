@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-
+import './css/style.css';
+import Card from './component/Card';
+import React, { useState } from 'react';
 function App() {
+  const [bg, setBg] = useState('');
+  console.log(process.env.REACT_APP_NASA_API_KEY)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="App" style={{
+      backgroundImage: `url(${bg})`
+    }}>
+      <div className='cover-background'>
+        <Card setBg={setBg}></Card>
+      </div>
+    </div >
   );
 }
 
