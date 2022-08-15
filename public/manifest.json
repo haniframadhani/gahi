@@ -1,8 +1,39 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "GAHI",
+  "name": "Gambar Astronomi Hari Ini",
+  "icons": [
+    {
+      "src": "favicon16.ico",
+      "sizes": "16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon32.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon64.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon128.ico",
+      "sizes": "128x128",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon256.ico",
+      "sizes": "256x256",
+      "type": "image/x-icon"
+    }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "developer": {
+    "name": "Hanif Ramadhani",
+    "url": "https://haniframadhani.github.io/"
+  }
 }

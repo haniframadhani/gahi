@@ -1,7 +1,7 @@
 import React, { useState, Component } from 'react'
 import '../css/style.css';
 import Footer from './Footer';
-import ConstructorApi from './ConstructorApi';
+import ConstructorApi from '../function/ConstructorApi';
 import axios from 'axios';
 import { DateTime } from 'luxon';
 
@@ -87,8 +87,8 @@ class Card extends Component {
             <a className='btn btn-cari' onClick={this.handleButton}>cari</a>
           </form>
           <p className='mt-2'>{this.props.waktu}</p>
-          <h3 className='mt-2'>{this.props.judul}</h3>
-          <p className='text-justify mt-1'>{this.props.penjelasan}</p>
+          <h3 className='mt-2'>{this.props.status !== 200 ? this.state.judul : this.props.judul}</h3>
+          <p className='text-justify mt-1'>{this.props.status !== 200 ? this.state.penjelasan : this.props.penjelasan}</p>
           <p className='mt-2'>Kredit Gambar &amp; Hak Cipta : {this.state.kredit}</p>
         </div>
         <Footer />
