@@ -246,3 +246,9 @@ input[type="date"] {
   margin-top: auto !important;
   margin-bottom: auto !important;
 }
+
+@media (max-width: 767.98px) {
+  .card::-webkit-scrollbar {
+    width: 1.5vh;
+  }
+}

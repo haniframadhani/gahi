@@ -21,7 +21,8 @@ class Card extends Component {
       gambar: '',
       thumb: '',
       video: '',
-      url: ''
+      url: '',
+      tanggalText: ''
     }
   }
 
@@ -39,6 +40,7 @@ class Card extends Component {
           tipe: response.data.media_type,
         })
         response.data.media_type != 'video' ? this.props.setBg(response.data.url) : this.props.setBg(response.data.thumbnail_url);
+        this.props.setTanggal(response.data.date);
       })
   }
 
@@ -56,6 +58,7 @@ class Card extends Component {
           tipe: response.data.media_type,
         })
         response.data.media_type != 'video' ? this.props.setBg(response.data.url) : this.props.setBg(response.data.thumbnail_url);
+        this.props.setTanggal(response.data.date);
       })
   }
 
@@ -79,7 +82,7 @@ class Card extends Component {
             <input type="date" name="tanggal" id="tanggal" min="1995-06-16" max={this.state.hariIni} onChange={this.handleChange} value={this.state.tanggalInput} />
             <a className='btn btn-cari' onClick={this.handleButton}>cari</a>
           </form>
-          <p className='mt-2'>{this.state.tanggal}</p>
+          <p className='mt-2'>{this.props.waktu}</p>
           <h3 className='mt-2'>{this.state.judul}</h3>
           <p className='text-justify mt-1'>{this.state.penjelasan}</p>
           <p className='mt-2'>Kredit Gambar &amp; Hak Cipta : {this.state.kredit}</p>
