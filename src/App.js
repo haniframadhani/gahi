@@ -19,13 +19,11 @@ function App() {
       .then((response) => {
         setJudul(response.data.responseData.translatedText);
         setStatus(response.data.responseStatus);
-        console.log("status : ", response.data.responseStatus)
       });
     axios.get(`https://api.mymemory.translated.net/get?q=${desc}&langpair=en|id&de=${process.env.REACT_APP_MYMEMORY_EMAIL}`)
       .then((response) => {
         setPenjelasan(response.data.responseData.translatedText);
         setStatus(response.data.responseStatus);
-        console.log("status : ", response.data.responseStatus)
       });
   }, [title, desc]);
 
