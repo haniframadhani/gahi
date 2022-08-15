@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, Component } from 'react'
 import '../css/style.css';
 import Footer from './Footer';
 import ConstructorApi from './ConstructorApi';
@@ -41,6 +41,8 @@ class Card extends Component {
         })
         response.data.media_type != 'video' ? this.props.setBg(response.data.url) : this.props.setBg(response.data.thumbnail_url);
         this.props.setTanggal(response.data.date);
+        this.props.setTitle(response.data.title);
+        this.props.setDesc(response.data.explanation);
       })
   }
 
@@ -59,6 +61,8 @@ class Card extends Component {
         })
         response.data.media_type != 'video' ? this.props.setBg(response.data.url) : this.props.setBg(response.data.thumbnail_url);
         this.props.setTanggal(response.data.date);
+        this.props.setTitle(response.data.title);
+        this.props.setDesc(response.data.explanation);
       })
   }
 
@@ -83,8 +87,8 @@ class Card extends Component {
             <a className='btn btn-cari' onClick={this.handleButton}>cari</a>
           </form>
           <p className='mt-2'>{this.props.waktu}</p>
-          <h3 className='mt-2'>{this.state.judul}</h3>
-          <p className='text-justify mt-1'>{this.state.penjelasan}</p>
+          <h3 className='mt-2'>{this.props.judul}</h3>
+          <p className='text-justify mt-1'>{this.props.penjelasan}</p>
           <p className='mt-2'>Kredit Gambar &amp; Hak Cipta : {this.state.kredit}</p>
         </div>
         <Footer />
