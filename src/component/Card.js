@@ -15,8 +15,8 @@ export default function Card({ setBg }) {
   const [tipe, setTipe] = useState('');
   const [kredit, setKredit] = useState('');
   const [url, setUrl] = useState('');
-  const [thumbnail, setThumbnail] = useState('');
   const [count, setCount] = useState(0);
+  const [status, setStatus] = useState('');
 
   const handleInput = e => {
     setTanggalInput(e.target.value);
@@ -26,6 +26,7 @@ export default function Card({ setBg }) {
     setCount(count + 1);
   }
 
+  // ambil data dari api 
   useEffect(() => {
     axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&thumbs=true&date=${tanggalInput}`)
       .then((response) => {
@@ -33,18 +34,19 @@ export default function Card({ setBg }) {
         setTanggal(response.data.date);
         setPenjelasan(response.data.explanation)
         setTipe(response.data.media_type);
-        setThumbnail(response.data.thumbnail_url);
         setJudul(response.data.title);
         setUrl(response.data.url);
         tipe != 'video' ? setBg(response.data.url) : setBg(response.data.thumbnail_url);
       });
   }, [count]);
 
+  // menerjemahkan judul dan penjelasan
   useEffect(() => {
     let timer = setTimeout(() => {
       axios.get(`https://api.mymemory.translated.net/get?q=${judul}&langpair=en|id&de=${process.env.REACT_APP_MYMEMORY_EMAIL}`)
         .then(response => {
           setJudulTerjemahan(response.data.responseData.translatedText);
+          setStatus(response.data.responseStatus);
         });
       axios.get(`https://api.mymemory.translated.net/get?q=${penjelasan}&langpair=en|id&de=${process.env.REACT_APP_MYMEMORY_EMAIL}`)
         .then(response => {
@@ -54,6 +56,7 @@ export default function Card({ setBg }) {
     return () => clearTimeout(timer);
   }, [judul, penjelasan])
 
+  // mengubah tanggal dari 2022-11-10 jadi 10 november 2022
   const time = DateTime.fromISO(tanggal);
   const waktu = time.setLocale('id').toLocaleString(DateTime.DATE_FULL);
 
@@ -67,8 +70,8 @@ export default function Card({ setBg }) {
           <a className='btn btn-cari' onClick={handleButton}>cari</a>
         </form>
         <p className='mt-2'>{waktu}</p>
-        <h3 className='mt-2'>{judulTerjemahan}</h3>
-        <p className='text-justify mt-1'>{penjelasanTerjemahan}</p>
+        <h3 className='mt-2'>{status === '200' ? judulTerjemahan : judul}</h3>
+        <p className='text-justify mt-1'>{status === '200' ? penjelasanTerjemahan : penjelasan}</p>
         <p className='mt-2'>Kredit Gambar &amp; Hak Cipta : {kredit}</p>
       </div>
       <Footer />
