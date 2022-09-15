@@ -2,7 +2,7 @@
 # GAHI
 
 ### [Gambar Astronomi Hari Ini](https://gahi.netlify.app/).
-Jelajahi alam semesta dengan gambar dan video astronomi yang luar biasa berbeda setiap harinya dengan penjelasan dari para pakar astronomi.
+Jelajahi alam semesta dengan gambar dan video astronomi yang luar biasa yang berbeda setiap harinya dengan penjelasan dari para pakar astronomi.
 
 
 ## API
