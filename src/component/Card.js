@@ -54,7 +54,7 @@ export default function Card({ setBg }) {
         });
     }, 300);
     return () => clearTimeout(timer);
-  }, [judul, penjelasan])
+  }, [judul, penjelasan]);
 
   // mengubah tanggal dari 2022-11-10 jadi 10 november 2022
   const time = DateTime.fromISO(tanggal);
@@ -70,8 +70,8 @@ export default function Card({ setBg }) {
           <a className='btn btn-cari' onClick={handleButton}>cari</a>
         </form>
         <p className='mt-2'>{waktu}</p>
-        <h3 className='mt-2'>{status === '200' ? judulTerjemahan : judul}</h3>
-        <p className='text-justify mt-1'>{status === '200' ? penjelasanTerjemahan : penjelasan}</p>
+        <h3 className='mt-2'>{status === 200 ? judulTerjemahan : judul}</h3>
+        <p className='text-justify mt-1'>{status === 200 ? penjelasanTerjemahan : penjelasan}</p>
         <p className='mt-2'>Kredit Gambar &amp; Hak Cipta : {kredit}</p>
       </div>
       <Footer />
