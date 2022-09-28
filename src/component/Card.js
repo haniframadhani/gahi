@@ -28,16 +28,19 @@ export default function Card({ setBg }) {
 
   // ambil data dari api 
   useEffect(() => {
-    axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&thumbs=true&date=${tanggalInput}`)
-      .then((response) => {
-        setKredit(response.data.copyright);
-        setTanggal(response.data.date);
-        setPenjelasan(response.data.explanation)
-        setTipe(response.data.media_type);
-        setJudul(response.data.title);
-        setUrl(response.data.url);
-        tipe != 'video' ? setBg(response.data.url) : setBg(response.data.thumbnail_url);
-      });
+    let timer = setTimeout(() => {
+      axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&thumbs=true&date=${tanggalInput}`)
+        .then((response) => {
+          setKredit(response.data.copyright);
+          setTanggal(response.data.date);
+          setPenjelasan(response.data.explanation)
+          setTipe(response.data.media_type);
+          setJudul(response.data.title);
+          setUrl(response.data.url);
+          tipe != 'video' ? setBg(response.data.url) : setBg(response.data.thumbnail_url);
+        });
+    }, 0);
+    return () => clearTimeout(timer);
   }, [count]);
 
   // menerjemahkan judul dan penjelasan
@@ -70,8 +73,8 @@ export default function Card({ setBg }) {
           <a className='btn btn-cari' onClick={handleButton}>cari</a>
         </form>
         <p className='mt-2'>{waktu}</p>
-        <h3 className='mt-2'>{status === 200 ? judulTerjemahan : judul}</h3>
-        <p className='text-justify mt-1'>{status === 200 ? penjelasanTerjemahan : penjelasan}</p>
+        <h3 className='mt-2'>{status === 200 ? judulTerjemahan === '' ? judul : judulTerjemahan : judul}</h3>
+        <p className='text-justify mt-1'>{status === 200 ? penjelasanTerjemahan === '' ? penjelasan : penjelasanTerjemahan : penjelasan}</p>
         <p className='mt-2'>Kredit Gambar &amp; Hak Cipta : {kredit}</p>
       </div>
       <Footer />
