@@ -30,8 +30,8 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
+  "theme_color": "#292C6D",
+  "background_color": "#161853",
   "developer": {
     "name": "Hanif Ramadhani",
     "url": "https://haniframadhani.github.io/"
