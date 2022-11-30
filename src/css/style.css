@@ -21,6 +21,7 @@ body {
 .App {
   width: 100vw;
   height: 100vh;
+  background-color: var(--Space-Cadet);
   /* background-image: url("https://apod.nasa.gov/apod/image/2208/PIA12572.jpg"); */
   background-position: center;
   background-size: cover;

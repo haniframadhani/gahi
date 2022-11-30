@@ -1,7 +1,7 @@
 import './css/style.css';
 import Card from './component/Card';
 import React, { useState } from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from "react-helmet";
 function App() {
   const [bg, setBg] = useState('');
 
@@ -12,6 +12,7 @@ function App() {
       <Helmet>
         <title>GAHI | Gambar Astronomi Hari Ini</title>
         <meta name="description" content="Jelajahi alam semesta dengan gambar dan video astronomi yang luar biasa yang berbeda setiap harinya dengan penjelasan dari para pakar astronomi." />
+        <meta name='keyword' content='apod, astronomy, astronomy picture of the day, astronomi, gambar luar angkasa, astrofotografi, gambar astronomi hari ini' />
         <meta property="og:url" content="https://gahi.netlify.app/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="GAHI | Gambar Astronomi Hari Ini" />
