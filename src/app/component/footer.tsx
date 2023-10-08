@@ -1,6 +1,6 @@
 import React from 'react';
 import { GitHub, Instagram, Globe } from 'react-feather';
-import '../css/style.css';
+
 function Footer() {
   return (
     <footer className='my-3'>

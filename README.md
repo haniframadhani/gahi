@@ -11,4 +11,3 @@ API yang digunakan
 
  - [APOD NASA](https://api.nasa.gov/#apod)
  - [MyMemory](https://mymemory.translated.net/doc/spec.php)
-
