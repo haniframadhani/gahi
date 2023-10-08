@@ -7,10 +7,6 @@ const nextConfig = {
   images: {
     domains: ['img.youtube.com', 'apod.nasa.gov'],
     formats: ['image/webp'],
-    // remotePatterns: [{
-    //   protocol: 'https',
-    //   // hostname: '**.nasa.gov/apod/'
-    // }]
   }
 }
 
