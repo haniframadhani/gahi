@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Providers } from '@/redux/provider'
+// import { Providers } from '@/redux/provider'
 
 export const metadata: Metadata = {
   title: 'GAHI | Gambar Astronomi Hari Ini',
@@ -14,9 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <Providers>{children}</Providers>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
