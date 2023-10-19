@@ -5,6 +5,9 @@ import Footer from "@/app/component/footer";
 import Image from "next/image";
 import axios from "axios";
 import DatePicker from '@/app/component/datePicker';
+import { notFound } from 'next/navigation';
+
+export const revalidate = 3600 * 24
 
 interface PageProps {
   params: {
@@ -14,7 +17,10 @@ interface PageProps {
 
 async function getContent(date: string) {
   const content = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}&thumbs=true&date=${date}`)
-    .then(Response => Response.data);
+    .then(Response => Response.data)
+    .catch(e => {
+      notFound()
+    });
   const translatedExplanation = await axios.get(`https://api.mymemory.translated.net/get?q=${content.explanation}&langpair=en|id&de=${process.env.MYMEMORY_EMAIL}`)
     .then(Response => Response.data.responseData.translatedText);
   const translatedTitle = await axios.get(`https://api.mymemory.translated.net/get?q=${content.title}&langpair=en|id&de=${process.env.MYMEMORY_EMAIL}`)
