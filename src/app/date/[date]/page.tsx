@@ -5,6 +5,7 @@ import Image from "next/image";
 import axios from "axios";
 import DatePicker from '@/app/component/datePicker';
 import { notFound } from 'next/navigation';
+import type { Metadata, ResolvingMetadata } from 'next'
 
 export const revalidate = 3600 * 24
 
@@ -20,10 +21,20 @@ async function getContent(date: string) {
     .catch(e => {
       notFound()
     });
-  const translatedExplanation = await axios.get(`https://api.mymemory.translated.net/get?q=${content.explanation}&langpair=en|id&de=${process.env.MYMEMORY_EMAIL}`)
-    .then(Response => Response.data.responseData.translatedText);
-  const translatedTitle = await axios.get(`https://api.mymemory.translated.net/get?q=${content.title}&langpair=en|id&de=${process.env.MYMEMORY_EMAIL}`)
-    .then(Response => Response.data.responseData.translatedText);
+  let translatedExplanation = '';
+  let translatedTitle = '';
+  try {
+    translatedExplanation = await axios.get(`https://api.mymemory.translated.net/get?q=${content.explanation}&langpair=en|id&de=${process.env.MYMEMORY_EMAIL}`)
+      .then(Response => Response.data.responseData.translatedText);
+  } catch (e) {
+    translatedExplanation = '';
+  }
+  try {
+    translatedTitle = await axios.get(`https://api.mymemory.translated.net/get?q=${content.title}&langpair=en|id&de=${process.env.MYMEMORY_EMAIL}`)
+      .then(Response => Response.data.responseData.translatedText);
+  } catch (e) {
+    translatedTitle = '';
+  }
   const data = {
     ...content,
     translatedExplanation,
@@ -32,8 +43,44 @@ async function getContent(date: string) {
   return data;
 }
 
+type Props = {
+  params: { date: string }
+}
+
+type Content = {
+  date: string,
+  title: string,
+  copyright: string,
+  url: string,
+  hdurl: string,
+  media_type: string,
+  explanation: string,
+  thumbnail_url: string,
+  translatedTitle: string,
+  translatedExplanation: string
+}
+
+export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const tanggal = params.date;
+  let content: Content;
+  content = await getContent(tanggal);
+  return {
+    title: content.translatedTitle.length === 0 ? content.title : content.translatedTitle,
+    description: content.translatedExplanation.length === 0 ? content.explanation : content.translatedExplanation,
+    openGraph: {
+      images: ['/opengraph-image.jpg', { url: content.media_type != 'video' ? content.url : content.thumbnail_url }]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${content.translatedTitle.length === 0 ? content.title : content.translatedTitle} |`,
+      description: content.translatedExplanation.length === 0 ? content.explanation : content.translatedExplanation,
+      images: ['/opengraph-image.jpg', { url: content.media_type != 'video' ? content.url : content.thumbnail_url }]
+    }
+  }
+}
+
 const Page: FC<PageProps> = async ({ params }) => {
-  let content = await getContent(params.date);
+  let content: Content = await getContent(params.date);
   const time = DateTime.fromISO(params.date);
   const waktu = time.setLocale('id').toLocaleString(DateTime.DATE_FULL);
   return (
