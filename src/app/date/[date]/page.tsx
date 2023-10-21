@@ -1,4 +1,3 @@
-// "use client"
 import { FC } from 'react';
 import { DateTime } from 'luxon';
 import Footer from "@/app/component/footer";
@@ -50,7 +49,7 @@ const Page: FC<PageProps> = async ({ params }) => {
           }} quality={100} priority={true} /> : <iframe className='video' src={content.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>}
           <div className='detail text-center'>
             <h1>Gambar Astronomi Hari Ini</h1>
-            <DatePicker date={waktu} />
+            <DatePicker dateParam={params.date} />
             <p className='mt-2'>{waktu}</p>
             <h3 className='mt-2'>{content.translatedTitle.length === 0 ? content.title : content.translatedTitle}</h3>
             <p className='text-justify mt-1'> {content.translatedExplanation.length === 0 ? content.explanation : content.translatedExplanation} </p>
