@@ -248,8 +248,36 @@ input[type="date"] {
   margin-bottom: auto !important;
 }
 
+.not-found {
+  background-color: var(--Space-Cadet);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.not-found h1 {
+  text-transform: capitalize;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.not-found a {
+  color: var(--white);
+  transition: 300ms;
+}
+
+.not-found a:hover{
+  color: var(--Amaranth);
+}
+
 @media (max-width: 767.98px) {
   .card::-webkit-scrollbar {
     width: 1.5vh;
+  }
+  .not-found h1 {
+  font-size: 2.5rem;
   }
 }
