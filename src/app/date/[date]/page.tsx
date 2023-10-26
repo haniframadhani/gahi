@@ -68,13 +68,13 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
     title: content.translatedTitle.length === 0 ? content.title : content.translatedTitle,
     description: content.translatedExplanation.length === 0 ? content.explanation : content.translatedExplanation,
     openGraph: {
-      images: ['/opengraph-image.jpg', { url: content.media_type != 'video' ? content.url : content.thumbnail_url }]
+      images: [{ url: content.media_type != 'video' ? content.url : content.thumbnail_url }]
     },
     twitter: {
       card: 'summary_large_image',
       title: `${content.translatedTitle.length === 0 ? content.title : content.translatedTitle} |`,
       description: content.translatedExplanation.length === 0 ? content.explanation : content.translatedExplanation,
-      images: ['/opengraph-image.jpg', { url: content.media_type != 'video' ? content.url : content.thumbnail_url }]
+      images: [{ url: content.media_type != 'video' ? content.url : content.thumbnail_url }]
     }
   }
 }
