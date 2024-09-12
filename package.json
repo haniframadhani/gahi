@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "axios": "^1.5.1",
+    "axios": "^1.7.4",
     "luxon": "^3.4.3",
     "next": "latest",
     "react": "latest",
